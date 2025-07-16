@@ -1,46 +1,55 @@
-function actualizarEstadoRamos() {
-  document.querySelectorAll('.ramo').forEach(ramo => {
-    const requisitos = ramo.dataset.prereq ? ramo.dataset.prereq.split(',') : [];
-    const aprobados = JSON.parse(localStorage.getItem('ramosAprobados')) || [];
+document.addEventListener("DOMContentLoaded", function () {
+  const ramos = document.querySelectorAll(".ramo");
 
-    if (aprobados.includes(ramo.id)) {
-      ramo.classList.add('aprobado');
-      ramo.classList.remove('bloqueado');
-      return;
-    }
-
-    if (requisitos.length === 0) {
-      ramo.classList.remove('bloqueado');
-    } else {
-      const cumplidos = requisitos.every(req => aprobados.includes(req.trim()));
-      if (cumplidos) {
-        ramo.classList.remove('bloqueado');
-      } else {
-        ramo.classList.add('bloqueado');
-      }
+  // Cargar estado desde localStorage
+  ramos.forEach(ramo => {
+    const id = ramo.id;
+    if (localStorage.getItem(id) === "aprobado") {
+      aprobarRamo(ramo);
     }
   });
-}
 
-document.addEventListener('click', function (e) {
-  if (!e.target.classList.contains('ramo')) return;
-  if (e.target.classList.contains('bloqueado')) return;
+  actualizarEstados();
 
-  const id = e.target.id;
-  let aprobados = JSON.parse(localStorage.getItem('ramosAprobados')) || [];
+  ramos.forEach(ramo => {
+    ramo.addEventListener("click", function () {
+      if (!ramo.classList.contains("bloqueado")) {
+        if (ramo.classList.contains("aprobado")) {
+          ramo.classList.remove("aprobado");
+          ramo.style.textDecoration = "none";
+          localStorage.removeItem(ramo.id);
+        } else {
+          aprobarRamo(ramo);
+          localStorage.setItem(ramo.id, "aprobado");
+        }
+        actualizarEstados();
+      }
+    });
+  });
 
-  if (aprobados.includes(id)) {
-    aprobados = aprobados.filter(r => r !== id);
-    e.target.classList.remove('aprobado');
-  } else {
-    aprobados.push(id);
-    e.target.classList.add('aprobado');
+  function aprobarRamo(ramo) {
+    ramo.classList.add("aprobado");
+    ramo.classList.remove("bloqueado");
   }
 
-  localStorage.setItem('ramosAprobados', JSON.stringify(aprobados));
-  actualizarEstadoRamos();
-});
+  function actualizarEstados() {
+    ramos.forEach(ramo => {
+      const requisitos = ramo.dataset.prereq;
+      if (requisitos) {
+        const ids = requisitos.split(" ");
+        const aprobados = ids.every(id => {
+          const prereq = document.getElementById(id);
+          return prereq && prereq.classList.contains("aprobado");
+        });
 
-window.addEventListener('DOMContentLoaded', () => {
-  actualizarEstadoRamos();
+        if (aprobados) {
+          ramo.classList.remove("bloqueado");
+        } else {
+          if (!ramo.classList.contains("aprobado")) {
+            ramo.classList.add("bloqueado");
+          }
+        }
+      }
+    });
+  }
 });
