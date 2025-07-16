@@ -1,9 +1,11 @@
 /* Tipografía elegante para el título */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #fff;
+  background-color: #f9f9f9;
 }
 
 .titulo {
@@ -11,7 +13,8 @@ body {
   font-size: 3rem;
   text-align: center;
   margin: 30px 0;
-  color: #333;
+  color: #2C3E50;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
 }
 
 /* Contenedor horizontal */
@@ -25,18 +28,18 @@ body {
 /* Cada semestre */
 .semestre {
   flex: 0 0 auto;
-  background-color: #fdfdfd;
+  background-color: #ffffff;
   padding: 15px;
-  border-radius: 10px;
+  border-radius: 12px;
   min-width: 250px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
 .semestre h2 {
   text-align: center;
   font-size: 1.2rem;
   margin-bottom: 10px;
-  color: #555;
+  color: #34495E;
 }
 
 /* Estilo general de los ramos */
@@ -48,13 +51,13 @@ body {
   cursor: pointer;
   font-size: 0.95rem;
   transition: all 0.3s ease;
-  background-color: #e0f7fa; /* celeste pastel por defecto (desbloqueado) */
-  color: #000;
+  background-color: #A7D8DE; /* celeste pastel por defecto (desbloqueado) */
+  color: #1a1a1a;
 }
 
 /* Bloqueado (no se puede clicar) */
 .ramo.bloqueado {
-  background-color: #cccccc;
+  background-color: #D3D3D3;
   color: #777;
   cursor: not-allowed;
   text-decoration: none;
@@ -62,7 +65,7 @@ body {
 
 /* Aprobado (clickeado, se tacha y queda azul oscuro) */
 .ramo.aprobado {
-  background-color: #003366;
+  background-color: #2C3E50;
   color: white;
   text-decoration: line-through;
 }
@@ -72,7 +75,7 @@ body {
   height: 10px;
 }
 .malla-container::-webkit-scrollbar-thumb {
-  background: #aaa;
+  background: #bbb;
   border-radius: 5px;
 }
 .malla-container::-webkit-scrollbar-track {
