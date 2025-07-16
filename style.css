@@ -1,70 +1,63 @@
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fff0f5;
+  font-family: "Segoe UI", sans-serif;
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  background-color: #fdeef4; /* rosa muy claro */
 }
 
-h1 {
+.titulo {
   text-align: center;
-  font-size: 3em;
-  color: #c06c84;
+  font-size: 2.5em;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
   font-family: 'Brush Script MT', cursive;
-  text-shadow: 2px 2px #f9c5d1;
-  margin-bottom: 40px;
+  color: #c94f7c;
 }
 
-.curriculum {
+.malla-container {
   display: flex;
   flex-direction: row;
   overflow-x: auto;
-  padding: 10px;
-  gap: 20px;
+  gap: 2rem;
+  padding: 1rem;
+  justify-content: flex-start;
 }
 
-.semester {
-  min-width: 220px;
-  border: 2px solid #f8bbd0;
-  border-radius: 15px;
-  padding: 10px;
-  background-color: #fff;
-  box-shadow: 3px 3px 10px rgba(192, 108, 132, 0.2);
+.semestre {
+  flex: 0 0 auto;
+  min-width: 200px;
 }
 
-.semester h2 {
+.semestre h2 {
   text-align: center;
-  color: #b04a6f;
-  font-size: 1.3em;
+  font-size: 1.2em;
+  color: #90294d;
 }
 
-.subject {
-  margin: 8px 0;
-  padding: 10px;
+.ramo {
+  background-color: #ffe6f0; /* rosa pastel claro */
+  border: 1px solid #ffb6c1;
+  margin: 0.5rem;
+  padding: 0.5rem;
   border-radius: 8px;
-  text-align: center;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
   cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
-.subject.locked {
-  background-color: #e0e0e0;
-  color: #999;
-  text-decoration: none;
+.ramo:hover {
+  background-color: #ffd1dc;
+}
+
+.ramo.bloqueado {
+  background-color: #dcdcdc;
+  color: #888;
+  text-decoration: line-through;
   cursor: not-allowed;
 }
 
-.subject.unlocked {
-  background-color: #f9c5d1;
-  color: #600f2f;
-}
-
-.subject.completed {
-  background-color: #c06c84;
+.ramo.aprobado {
+  background-color: #c94f7c;
   color: white;
   text-decoration: line-through;
-}
-
-.subject:hover {
-  opacity: 0.9;
 }
